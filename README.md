@@ -20,11 +20,15 @@ To have the same environment we are testing against, you can follow the followin
 ## Spec
 The Go specification details the grammar and expected semantics during construction of Go programs. However, there are additional specifications scattered across multiple places. For convenience (and aggregation), these documents have been detailed below.
 
-- [Language Specification]()
-- [Memory Model]()
-- [Garbage Collection (talk)]()
-- [Scheduler]()
-- [Contracts Proposal]()
+- [Language Specification](https://golang.org/ref/spec)
+- [Memory Model](https://golang.org/ref/mem)
+- [Garbage Collection Semantics](https://www.ardanlabs.com/blog/2018/12/garbage-collection-in-go-part1-semantics.html)
+- [Garbage Collection Tracing](https://www.ardanlabs.com/blog/2019/05/garbage-collection-in-go-part2-gctraces.html)
+- [Garbage Collection Pacing](https://www.ardanlabs.com/blog/2019/07/garbage-collection-in-go-part3-gcpacing.html)
+- [Summary of OS Thread Scheduling (non-go-related)](https://www.ardanlabs.com/blog/2018/08/scheduling-in-go-part1.html)
+- [Go's Scheduler](https://www.ardanlabs.com/blog/2018/08/scheduling-in-go-part2.html)
+- [Go Escape analysis](http://www.agardner.me/golang/garbage/collection/gc/escape/analysis/2015/10/18/go-escape-analysis.html)
+- [Go 1.14 compiler changes](https://tip.golang.org/doc/go1.14#compiler)
 
 ## IR
 
@@ -38,7 +42,7 @@ A Go program is typilcally built into an arbitrary executable (typically static,
 ## 
 
 ## Coroutine scheduling
-In Go you can spawn "coroutines", or "threads" in most other languages. Unlike interpreted languages such as Python/Ruby (in some variants), there is no Global Interpreter like functionality, but there is also no system-thread like functionality. Go handles all of this for you through the concepts of:
+In Go you can spawn coroutines to perform asynchronous tasks. Unlike interpreted languages such as Python/Ruby (in some variants), there is no Global Interpreter like functionality. Go handles all of this for you through the concepts of:
 
 ```go
 // The main concepts are:
@@ -48,8 +52,13 @@ In Go you can spawn "coroutines", or "threads" in most other languages. Unlike i
 //     M must have an associated P to execute Go code, however it can be
 //     blocked or in a syscall w/o an associated P.
 ```
+_Extracted from [go/src/runtime/proc.go](https://github.com/btonic/go-research/blob/e2ab4a841a35cad07b35fee7d5ac193d910f43b4/go/src/runtime/proc.go#L19-L29)._
 
-A given set of N-coroutines (G) execute on a process (P), and a process is a one-to-one mapping to an OS thread (M). Gs are managed in a queue-like structure, where any MP, if available, can execute a given set of Gs. If no Gs are available, a rebalancing of Gs from other MPs is performed through attempts to steal them.
+In breif, given set of N-coroutines (G) execute on a process (P), and a process is a one-to-one mapping to an OS thread (M). Gs are managed in a queue-like structure, where any MP, if available, can execute a given set of Gs. If no Gs are available from the queue, a rebalancing of Gs from other MPs is performed through attempts to steal them.
 
 ## Garbage Collection
-The GC uses locking and mutex semantics through this concept of "stopping the world," where in order to identify values available for GC it will attempt to park every coroutine, perform it's cleanup, and "resume the world". It does this on a set timer, asynchronously. Now, something that is also interesting is that because it must obey the G parking status, the program execution can affect GC execution indirectly, as it is possible to prevent a coroutine from successfully parking.
+Given the fact that the scheduler handles execution of program-requested coroutines, the garbage collector (GC) is able to perform it's job through similar semantics as the program. The GC uses locking and mutex semantics by "stopping the world," where in order to identify values available for GC it will attempt to park coroutines, perform it's cleanup, and "resume the world". It does this on a set timer, asynchronously. 
+
+Interestingly, because the GC must obey the G parking status, the program execution can affect GC execution indirectly, as it is possible to prevent a coroutine from successfully parking.
+
+## Safety of types
