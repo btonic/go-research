@@ -1,0 +1,19 @@
+{"version":0,"package":"main","goos":"darwin","goarch":"amd64","gc_version":"go1.14.4","file":"/Users/roberttonic/Work/PersonalTools/go-research/testing/unsafe-types/unsafeinterface/main.go"}
+{"range":{"start":{"line":19,"character":6},"end":{"line":19,"character":6}},"severity":3,"code":"cannotInlineFunction","source":"go compiler","message":"function too complex: cost 139 exceeds budget 80"}
+{"range":{"start":{"line":29,"character":6},"end":{"line":29,"character":6}},"severity":3,"code":"cannotInlineFunction","source":"go compiler","message":"function too complex: cost 140 exceeds budget 80"}
+{"range":{"start":{"line":30,"character":13},"end":{"line":30,"character":13}},"severity":3,"code":"inlineCall","source":"go compiler","message":"fmt.Println"}
+{"range":{"start":{"line":30,"character":14},"end":{"line":30,"character":14}},"severity":3,"code":"escape","source":"go compiler","message":""}
+{"range":{"start":{"line":30,"character":14},"end":{"line":30,"character":14}},"severity":3,"code":"escape","source":"go compiler","message":""}
+{"range":{"start":{"line":30,"character":14},"end":{"line":30,"character":14}},"severity":3,"code":"escape","source":"go compiler","message":""}
+{"range":{"start":{"line":49,"character":6},"end":{"line":49,"character":6}},"severity":3,"code":"canInlineFunction","source":"go compiler","message":"cost: 0"}
+{"range":{"start":{"line":57,"character":6},"end":{"line":57,"character":6}},"severity":3,"code":"canInlineFunction","source":"go compiler","message":"cost: 65"}
+{"range":{"start":{"line":64,"character":6},"end":{"line":64,"character":6}},"severity":3,"code":"cannotInlineFunction","source":"go compiler","message":"unhandled op GO"}
+{"range":{"start":{"line":66,"character":19},"end":{"line":66,"character":19}},"severity":3,"code":"inlineCall","source":"go compiler","message":"runtime.NumCPU"}
+{"range":{"start":{"line":67,"character":14},"end":{"line":67,"character":14}},"severity":3,"code":"inlineCall","source":"go compiler","message":"fmt.Println"}
+{"range":{"start":{"line":67,"character":15},"end":{"line":67,"character":15}},"severity":3,"code":"escape","source":"go compiler","message":""}
+{"range":{"start":{"line":80,"character":6},"end":{"line":80,"character":6}},"severity":3,"code":"escape","source":"go compiler","message":""}
+{"range":{"start":{"line":81,"character":6},"end":{"line":81,"character":6}},"severity":3,"code":"escape","source":"go compiler","message":""}
+{"range":{"start":{"line":89,"character":5},"end":{"line":89,"character":5}},"severity":3,"code":"cannotInlineFunction","source":"go compiler","message":"unhandled op FOR"}
+{"range":{"start":{"line":89,"character":5},"end":{"line":89,"character":5}},"severity":3,"code":"escape","source":"go compiler","message":""}
+{"range":{"start":{"line":99,"character":4},"end":{"line":99,"character":4}},"severity":3,"code":"cannotInlineFunction","source":"go compiler","message":"function too complex: cost 81 exceeds budget 80"}
+{"range":{"start":{"line":103,"character":16},"end":{"line":103,"character":16}},"severity":3,"code":"inlineCall","source":"go compiler","message":"fmt.Println"}
