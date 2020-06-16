@@ -62,3 +62,4 @@ Given the fact that the scheduler handles execution of program-requested corouti
 Interestingly, because the GC must obey the G parking status, the program execution can affect GC execution indirectly, as it is possible to prevent a coroutine from successfully parking.
 
 ## Safety of types
+In Go, there is a general understanding that all operations are memory safe. However, this only holds when race conditions are not present. Certain types in Go are represented by underlying structures. These operations do not always enforce atomic properties. As a result, we can manipulate memory in a way that is unsafe. These types have been [documented within this repository](testing/unsafe-types/README.md).
