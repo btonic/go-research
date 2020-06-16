@@ -1,4 +1,10 @@
 # Unsafe Interfaces
+## Building
+```
+$ go run .
+win 92 5319
+exit status 1
+```
 
 ## Underlying interface structures
 ```go
