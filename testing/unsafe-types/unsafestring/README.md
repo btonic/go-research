@@ -34,7 +34,7 @@ Given the definition of `a`, `b`, and `confused` as strings, the following is th
 2. `b` is assigned a value with a lesser length than `a`.
 3. The value of `confused` is repeatedly printed from index `[length(b):]` in goroutine `A`.
 4. The `confused` variable is repeatedly reassigned between `a` and `b` in goroutine `B`.
-5. A race is encountered in goroutine `A`, where the underlying structure representing `confused` has a length of `a`, but points to `b`, and thus leaks `length(a) - length(b)` bytes of surrounding memory through indexing.
+5. A race is encountered in goroutine `A`, where the underlying structure representing `confused` has a length of `a`, but points to `b`, and thus leaks `length(a) - length(b)` bytes of adjacent memory through indexing.
 
 In our [example](./main.go), we can observe this type of race in a pure form. We first begin by defining our variables, `a`, `b`, and `confused`. We initialize both `a` and `b` to values, where `a` is our long string which will allow us to read `length(a) - length(b)` bytes adjacent to `b`.
 
