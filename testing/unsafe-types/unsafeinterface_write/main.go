@@ -70,6 +70,7 @@ func main() {
 
 	// The winAddr is the address of the `win` function.
 	winAddr := address(win)
+	fmt.Println(winAddr)
 
 	// We are defining the variables involved in the race:
 	//
