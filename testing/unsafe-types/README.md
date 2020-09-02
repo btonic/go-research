@@ -1,13 +1,14 @@
 # Unsafe type operations in Go
 
 ## Known unsafe operations
-1. [`interface` assignment "write" race condition](unsafeinterface/README.md)
+1. [`interface` assignment "write" race condition](unsafeinterface_write/README.md)
 2. [TBD: `slice` read overflow race condition](#)
-3. [`slice` write overflow race condition](unsafeslice/README.md)
-4. [`string` read overflow race condition](unsafestring/README.md)
+3. [`slice` write overflow race condition](unsafeslice_write/README.md)
+4. [`string` read overflow race condition](unsafestring_read/README.md)
 5. [TBD: `map` read overflow race condition](#)
 6. [TBD: `map` write overflow race condition](#)
 7. [TBD: type assertion read race condition](#)
+8. [type assertion write race condition](unsafetypeassertion_write/README.md)
 
 ## General considerations
 The Go language makes many assumptions about how a Go program should be compiled by default. Optimization, executable debugging, and executable protections are areas where such assumptions may not be obvious concerns until further inspection.
