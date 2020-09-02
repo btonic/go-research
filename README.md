@@ -5,6 +5,12 @@ This repository is an attempt to detail interesting semantics of the Go language
 Research. Bugs. Nihilistic angst.
 
 ---
+
+# Areas of research
+1. [Compiler](compiler/) - Reserach related to how Go programs are constructed (IR/assembler/codegen/etc).
+2. [Runtime](runtime/) - Research related to how coroutines, scheduling, and process management are performed.
+3. [Type system](type_system/) - Research into how the type system works and affects program behavior.
+
 # Local Environment Configuration
 To have the same environment we are testing against, you can follow the following steps for setup.
 
@@ -15,9 +21,3 @@ To have the same environment we are testing against, you can follow the followin
 5. Link the cloned target branch to a location in your `PATH` (e.g. `/usr/local/bin`).
 6. Build the cloned target branch.
 7. Test your installation (easiest is to `go get` a package w/ a built bin, and executing the bin).
-
-
-## Areas of research
-1. [Compiler](compiler/) - Reserach related to how Go programs are constructed (IR/assembler/codegen/etc).
-2. [Runtime](runtime/) - Research related to how coroutines, scheduling, and process management are performed.
-3. [Type system](type_system/) - Research into how the type system works and affects program behavior.
